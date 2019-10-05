@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Calculator</title>
+    <script src="./js/main.js"></script>
+    <link rel="stylesheet" href="./css/main.css">
+    <script>
+    function insert(num){
+    document.forms.calc.textview.value = document.forms.calc.textview.value+ num; 
+}
+
+function calculate(el){
+    
+    var exp = document.forms.calc.textview.value;
+    document.forms.calc.textview.value  = eval(exp);
+}
+
+function keypress(e){
+    event.preventDefault();
+    if(event.keyCode==13){
+        calculate();
+    }else if(!isNaN(event.key) || ['/','*','-','+','.'].includes(event.key)){ //I dont care about IE
+        document.forms.calc.textview.value = document.forms.calc.textview.value + event.key;
+    }else if(event.key=='Backspace'){
+        back();
+    }else if(event.key=='Escape'){
+        cleararea();
+    }
+
+}
+
+function cleararea(){
+    document.forms.calc.textview.value = "";
+}
+
+function back(){
+    var exp = document.forms.calc.textview.value;
+    document.forms.calc.textview.value = exp.substring(0,exp.length-1);
+}
+    </script>
+</head>
+
+<body onkeydown="keypress(this)">
+    <div class="calc-div">
+        <table>
+            <tr >
+                <td colspan="4" >
+                        <form name="calc">
+                                <input class="text-area" name="textview" style="width: 100%;">
+                            </form>
+                </td>
+                    
+            </tr>
+                <tr>
+                        <td><input class="btn" type="button" value="c" onclick="cleararea() "></td>
+                        <td><input class="btn" type="button"value="<" onclick="back() "></td>
+                        <td><input class="btn" type="button"value="/" onclick="insert('/') "></td>
+                        <td><input class="btn" type="button"value="*" onclick="insert('*') "></td>
+                    </tr>
+                <tr>
+                        <td><input class="btn" type="button" value="7" onclick="insert('7')"></td>
+                        <td><input class="btn" type="button"value="8" onclick="insert('8') "></td>
+                        <td><input class="btn" type="button"value="9" onclick="insert('9') "></td>
+                        <td><input class="btn" type="button"value="-" onclick="insert('-') "></td>
+                    </tr>
+                    <tr>
+                            <td><input class="btn" type="button" value="4" onclick="insert('4') "></td>
+                            <td><input class="btn" type="button"value="5" onclick="insert('5') "></td>
+                            <td><input class="btn" type="button"value="6" onclick="insert('6') "></td>
+                            <td><input class="btn" type="button"value="+" onclick="insert('+') "></td>
+                        </tr>
+
+            <tr>
+                <td><input class="btn" type="button" value="1" onclick="insert('1') "></td>
+                <td><input class="btn" type="button"value="2" onclick="insert('2') "></td>
+                <td><input class="btn" type="button"value="3" onclick="insert('3') "></td>
+                <td rowspan="2"><input style="height: 100px;" onclick="calculate() "  class="btn" type="button"value="="></td>
+            </tr>
+            <tr>
+                    <td colspan="2" ><input style="width: 100%"  onclick="insert('0') "class="btn" type="button" value="0" ></td>
+                    <td><input class="btn" type="button"value="." onclick="insert('.') "></td>
+                    
+                </tr>
+        </table>
+    </div>
+
+
+
+</body>
+
+</html>

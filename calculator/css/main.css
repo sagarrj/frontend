@@ -1,0 +1,22 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.text-area{
+    height: 30px;
+}
+
+.btn{
+    padding: 15px;
+    min-width: 50px;
+    cursor: pointer;
+}
+
+.calc-div{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
